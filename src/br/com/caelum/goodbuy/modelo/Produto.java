@@ -1,11 +1,14 @@
 package br.com.caelum.goodbuy.modelo;
 
-import org.hibernate.annotations.Entity;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 
 @Entity
 public class Produto {
-	@I
-	@Gener
+	@Id
+	@GeneratedValue
 	private Long id;
 	private String nome;
 	private String descricao;
