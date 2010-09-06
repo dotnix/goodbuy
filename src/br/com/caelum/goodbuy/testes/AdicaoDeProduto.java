@@ -3,29 +3,20 @@ package br.com.caelum.goodbuy.testes;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
-import br.com.caelum.goodbuy.infra.CriadorDeSession;
+import br.com.caelum.goodbuy.dao.ProdutoDao;
 import br.com.caelum.goodbuy.modelo.Produto;
 
 public class AdicaoDeProduto {
 
 	public static void main(String[] args) {
 		
-		Session session = CriadorDeSession.getSession();
-		
 		Produto produto = criaProduto();
 		
-		salvaProduto(session, produto);
+		new ProdutoDao().salva(produto);
 		
 	}
 
-	private static void salvaProduto(Session session, Produto produto) {
-		Transaction tx = session.beginTransaction();
-		session.save(produto);
-		tx.commit();
-	}
+	
 
 	private static Produto criaProduto() {
 		Produto produto = new Produto();
