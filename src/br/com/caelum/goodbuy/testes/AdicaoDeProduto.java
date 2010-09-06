@@ -4,17 +4,16 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.AnnotationConfiguration;
 
+import br.com.caelum.goodbuy.infra.CriadorDeSession;
 import br.com.caelum.goodbuy.modelo.Produto;
 
 public class AdicaoDeProduto {
 
 	public static void main(String[] args) {
 		
-		Session session = criaSession();
+		Session session = CriadorDeSession.getSession();
 		
 		Produto produto = criaProduto();
 		
@@ -26,14 +25,6 @@ public class AdicaoDeProduto {
 		Transaction tx = session.beginTransaction();
 		session.save(produto);
 		tx.commit();
-	}
-
-	private static Session criaSession() {
-		AnnotationConfiguration cfg = new AnnotationConfiguration();
-		cfg.configure();
-		SessionFactory factory = cfg.buildSessionFactory();
-		Session session = factory.openSession();
-		return session;
 	}
 
 	private static Produto criaProduto() {
