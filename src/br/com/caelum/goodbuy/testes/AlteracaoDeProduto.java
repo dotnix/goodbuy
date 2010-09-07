@@ -16,7 +16,7 @@ public class AlteracaoDeProduto {
 
 
 	private static Produto criaProduto() {
-		Produto produto = new ProdutoDao().buscaPorId(1L);
+		Produto produto = new ProdutoDao().carrega(1L);
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			System.out.println(produto);

@@ -36,7 +36,7 @@ public class ProdutoDao {
 		tx.commit();
 	}
 	
-	public Produto buscaPorId(Long id){
+	public Produto carrega(Long id){
 		return (Produto) session.load(Produto.class, id);
 	}
 	

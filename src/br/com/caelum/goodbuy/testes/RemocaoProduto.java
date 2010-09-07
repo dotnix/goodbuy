@@ -14,7 +14,7 @@ public class RemocaoProduto {
 	}
 
 	private static Produto criaProduto() {
-		Produto produto = new ProdutoDao().buscaPorId(1L);
+		Produto produto = new ProdutoDao().carrega(1L);
 		return produto;
 	}
 

@@ -28,6 +28,15 @@ public class ProdutosController {
 	}
 	
 	public void formulario(){
-		
 	}
+	
+	public Produto edita(Long id){
+		return dao.carrega(id);
+	}
+	
+	public void altera(Produto produto) {
+		dao.atualiza(produto);
+		result.redirectTo(ProdutosController.class).lista();
+	}
+	
 }
