@@ -1,4 +1,4 @@
-package br.com.caelum.goodbuy;
+package br.com.caelum.goodbuy.modelo;
 
 import br.com.caelum.vraptor.Resource;
 
