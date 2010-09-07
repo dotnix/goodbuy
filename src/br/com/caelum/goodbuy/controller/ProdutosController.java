@@ -39,4 +39,10 @@ public class ProdutosController {
 		result.redirectTo(ProdutosController.class).lista();
 	}
 	
+	public void remove(Long id){
+		Produto produto = dao.carrega(id);
+		dao.remove(produto);
+		result.redirectTo(ProdutosController.class).lista();
+	}
+	
 }
