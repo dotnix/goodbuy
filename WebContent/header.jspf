@@ -24,6 +24,7 @@
 	<div id="body">
 		<div id="menu">
 			<ul>
+				<li><a href="<c:url value="/produtos/formulario"/>">Novo Produto</a></li>
 				<li><a href="<c:url value="/produtos/lista"/>">Lista Produtos</a></li>
 			</ul>
 

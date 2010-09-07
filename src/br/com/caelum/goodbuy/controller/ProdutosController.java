@@ -18,4 +18,12 @@ public class ProdutosController {
 	public List<Produto> lista(){
 		return dao.listaTudo();
 	}
+	
+	public void adiciona(Produto produto) {
+		dao.salva(produto);
+	}
+	
+	public void formulario(){
+		
+	}
 }
