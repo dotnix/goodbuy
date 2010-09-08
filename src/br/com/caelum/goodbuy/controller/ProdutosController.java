@@ -41,7 +41,7 @@ public class ProdutosController {
 				
 			}});
 		
-		validator.onErrorForwardTo(Results.page()).of(ProdutosController.class).formulario();
+		validator.onErrorUse(Results.page()).of(ProdutosController.class).formulario();
 		
 		dao.salva(produto);
 		result.redirectTo(ProdutosController.class).lista();
