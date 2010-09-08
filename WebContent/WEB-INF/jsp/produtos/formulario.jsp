@@ -1,4 +1,4 @@
-<form action="adiciona">
+<form action="<c:url value="/produtos"/>" method="POST">
 	<fieldset>
 	<legend>Adicionar Produto</legend>
 		<label for="nome">Nome:</label>

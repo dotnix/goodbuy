@@ -4,6 +4,11 @@ import java.util.List;
 
 import br.com.caelum.goodbuy.dao.ProdutoDao;
 import br.com.caelum.goodbuy.modelo.Produto;
+import br.com.caelum.vraptor.Delete;
+import br.com.caelum.vraptor.Get;
+import br.com.caelum.vraptor.Path;
+import br.com.caelum.vraptor.Post;
+import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
@@ -23,10 +28,27 @@ public class ProdutosController {
 		this.validator = validator;
 	}
 
-	public List<Produto> lista() {
-		return dao.listaTudo();
+	@Get @Path("produtos/novo")
+	public void formulario() {
 	}
-
+	
+	@Get @Path("/produtos/{id}")
+	public Produto edita(Long id) {
+		return dao.carrega(id);
+	}
+	
+	@Put @Path("/produtos/{produto.id}")
+	public void altera(Produto produto) {
+		validacaoObrigatorio(produto);
+		
+		validator.onErrorUse(Results.page()).of(ProdutosController.class).edita(produto.getId());
+		
+		dao.atualiza(produto);
+		result.redirectTo(ProdutosController.class).lista();
+	}
+	
+	
+	@Post @Path("/produtos")
 	public void adiciona(final Produto produto) {
 		
 		validacaoObrigatorio(produto);
@@ -36,29 +58,17 @@ public class ProdutosController {
 		dao.salva(produto);
 		result.redirectTo(ProdutosController.class).lista();
 	}
-
 	
-
-	public void formulario() {
-	}
-
-	public Produto edita(Long id) {
-		return dao.carrega(id);
-	}
-
-	public void altera(Produto produto) {
-		validacaoObrigatorio(produto);
-		
-		validator.onErrorUse(Results.page()).of(ProdutosController.class).edita(produto.getId());
-		
-		dao.atualiza(produto);
-		result.redirectTo(ProdutosController.class).lista();
-	}
-
+	@Delete @Path("/produtos/{id}")
 	public void remove(Long id) {
 		Produto produto = dao.carrega(id);
 		dao.remove(produto);
 		result.redirectTo(ProdutosController.class).lista();
+	}
+	
+	@Get @Path("/produtos")
+	public List<Produto> lista() {
+		return dao.listaTudo();
 	}
 
 	private void validacaoObrigatorio(final Produto produto) {
