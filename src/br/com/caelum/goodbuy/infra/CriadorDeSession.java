@@ -12,7 +12,7 @@ import br.com.caelum.vraptor.ioc.RequestScoped;
 
 @Component
 @RequestScoped
-// Essa Sesseion já é padrão
+// O RequestScopep já é o padrão
 public class CriadorDeSession implements ComponentFactory<Session> {
 
 	private final SessionFactory factory;

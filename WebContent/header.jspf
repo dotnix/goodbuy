@@ -19,7 +19,11 @@
 	</div>
 	<div id="erros">
 		<ul>
+			<c:forEach items="${errors}" var="error">
+				<li>${error.category } - ${error.message }</li>
+			</c:forEach>
 		</ul>
+
 	</div>
 	<div id="body">
 		<div id="menu">
