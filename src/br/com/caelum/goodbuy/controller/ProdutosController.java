@@ -28,6 +28,40 @@ public class ProdutosController {
 	}
 
 	public void adiciona(final Produto produto) {
+		
+		validacaoObrigatorio(produto);
+		
+		validator.onErrorUse(Results.page()).of(ProdutosController.class).formulario();
+		
+		dao.salva(produto);
+		result.redirectTo(ProdutosController.class).lista();
+	}
+
+	
+
+	public void formulario() {
+	}
+
+	public Produto edita(Long id) {
+		return dao.carrega(id);
+	}
+
+	public void altera(Produto produto) {
+		validacaoObrigatorio(produto);
+		
+		validator.onErrorUse(Results.page()).of(ProdutosController.class).edita(produto.getId());
+		
+		dao.atualiza(produto);
+		result.redirectTo(ProdutosController.class).lista();
+	}
+
+	public void remove(Long id) {
+		Produto produto = dao.carrega(id);
+		dao.remove(produto);
+		result.redirectTo(ProdutosController.class).lista();
+	}
+
+	private void validacaoObrigatorio(final Produto produto) {
 		validator.checking(new Validations() {
 			{
 				that(produto.getNome() != null && produto.getNome().length() >= 3, 
@@ -40,29 +74,5 @@ public class ProdutosController {
 						"produto.preco", "preco.positivo");
 				
 			}});
-		
-		validator.onErrorUse(Results.page()).of(ProdutosController.class).formulario();
-		
-		dao.salva(produto);
-		result.redirectTo(ProdutosController.class).lista();
 	}
-
-	public void formulario() {
-	}
-
-	public Produto edita(Long id) {
-		return dao.carrega(id);
-	}
-
-	public void altera(Produto produto) {
-		dao.atualiza(produto);
-		result.redirectTo(ProdutosController.class).lista();
-	}
-
-	public void remove(Long id) {
-		Produto produto = dao.carrega(id);
-		dao.remove(produto);
-		result.redirectTo(ProdutosController.class).lista();
-	}
-
 }
