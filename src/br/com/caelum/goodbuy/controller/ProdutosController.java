@@ -85,4 +85,16 @@ public class ProdutosController {
 				
 			}});
 	}
+	
+	public List<Produto> busca(String nome) {
+		result.include("nome", nome);
+		return dao.busca(nome);
+	}
+	
+	@Get @Path("/produtos/busca.json")
+	public void bucaJson(String q){
+		result.use(Results.json()).from(dao.busca(q))
+		.exclude("id", "descricao")
+		.serialize();
+	}
 }
